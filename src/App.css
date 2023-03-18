@@ -12,6 +12,10 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+body{
+  background-image: url("https://img.freepik.com/free-vector/hand-drawn-minimal-background_23-2149007819.jpg");
+  background-size: cover;
+}
 
 .App-header {
   background-color: #282c34;
@@ -35,4 +39,59 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.card{
+  box-shadow: 0 0 10px rgb(23, 22, 22);
+  width: 30%;
+  margin: auto;
+  padding: 2rem;
+  margin-top: 15px;
+  background-color: white;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px ;
+}
+
+.buttonOut{
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px ;
+}
+
+.text{
+  font-family: cursive;
+}
+
+.textOut{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
 }

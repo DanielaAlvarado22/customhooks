@@ -5,7 +5,7 @@ import useForm from '../hooks/useForm.ts'
 
 interface AuthState {
     validating: Boolean,
-    isValid: Boolean,
+    isOkay: Boolean,
     token: string | null,
     username: string,
     password: string
@@ -24,15 +24,15 @@ const authReducer = (state: AuthState, action: AuthAction) => {
     switch (action.type) {
         case 'logout':
             return {
-                ...state,
+                ...initialState,
             }
         case 'login':
             const { username, password } = action.payload
             const user = { username: 'ponmkesito22', password: 'danonino' }
 
             if (username == user.username && password == user.password){
-                return{ username, isValid: true, token: 'REACTRULES', validating:false }
-            }else { return { ...state, isValid: false } }
+                return{ username, isOkay: true, token: 'REACTRULES', validating:false }
+            }else { return { ...initialState, isOkay: false } }
             
         default:
             return state;
@@ -40,7 +40,7 @@ const authReducer = (state: AuthState, action: AuthAction) => {
 }
 const initialState: AuthState = {
     validating: false,
-    isValid: true,
+    isOkay: true,
     token: null,
     username: '',
     password: ''
@@ -48,9 +48,9 @@ const initialState: AuthState = {
 
 function Form() {
     const [state, handleChange] = useForm(initialState)
-    const[{username, token, isValid}, dispatch] = useReducer(authReducer, initialState)
+    const[{username, token, isOkay}, dispatch] = useReducer(authReducer, initialState)
    
-    //const [submitted, setSubmitted] = useState(false)
+    
 
     const login = (e: FormEvent<HTMLFormElement>) =>{
         const payload ={ username: state.username, password: state.password}
@@ -64,14 +64,15 @@ function Form() {
     }
     
      useEffect(() => {
-        //isValid ? setSubmitted(true) : setSubmitted(true)
+        
 
     }, [])
 
     return (
-        <div>
+        <div className='card'>
             <form onSubmit={ login}>
                 <label>Username</label>
+                <br></br>
                 <input
                     type='text'
                     name='username'
@@ -80,30 +81,34 @@ function Form() {
                 />
                 <br/>
                 <label>Password</label>
+                <br></br>
                 <input
-                    type='text'
+                    type='password'
                     name='password'
                     value={state.password}
                     onChange={handleChange}
                 />
+                <br></br>
                 <br/>
-                <input type='submit' value='login'></input>
+                <input className='button' type='submit' value='Login'></input>
         
             </form>
             <br/>
             <br />
             <br/>
-            {/* {submitted && <h2> Validando credenciales...</h2>} */}
-            { !isValid && <h1> Incorrect user or password! Try again</h1>}
-            { token && isValid &&
+            
+            { !isOkay && <h1 className='textOut'> Creedenciales incorrectas, intenta otra vez .｡･ﾟﾟ･(＞_＜)･ﾟﾟ･｡. </h1>}
+            { token && isOkay &&
                 <div>
                    
-                    <h1> Bienvenido {username}! </h1>
+                    <h1 className='text'> El usuario {username} ha iniciado sesión ＼(＾O＾)／ </h1>
                     <input
+                        className='buttonOut'
                         type='submit'
                         name="logout"
-                        value='logout'
+                        value='Logout'
                         onClick={logout}
+
                     />
                 </div>
                 
